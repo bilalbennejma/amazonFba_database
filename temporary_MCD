@@ -1,0 +1,82 @@
+A. CLIENT
+
+- id_client (Identifiant)
+- nom
+- email
+- tel
+
+B. ADRESSE
+
+- id_adresse (Identifiant)
+- ligne1
+- ville
+- code_postal
+- pays
+
+C. VENDEUR
+
+- id_vendeur (Identifiant)
+- nom
+- email
+- iban
+- pays
+
+D. PRODUIT
+
+- sku (Identifiant)
+- nom
+- marque
+
+E. CATEGORIE
+
+- id_categorie (Identifiant)
+- libelle
+
+F. ENTREPOT
+
+- id_entrepot (Identifiant)
+- nom
+- ville
+- pays
+
+G. COMMANDE
+
+- id_commande (Identifiant)
+- date_commande
+- statut_commande
+
+H. PAIEMENT
+
+- id_paiement (Identifiant)
+- mode_paiement
+- montant
+- date_paiement
+- statut_paiement
+
+I. EXPEDITION
+
+- id_expedition (Identifiant)
+- transporteur
+- num_suivi
+- date_expedition
+- date_livraison
+
+J. RETOUR (optionnel mais utile)
+
+- id_retour (Identifiant)
+- date_retour
+- motif
+- montant_rembourse
+- etat_article
+
+K. STOCK (entité-association)
+
+- quantite_disponible
+
+et le Sku je pense
+
+L. LIGNE_COMMANDE (entité-association)
+
+- quantite
+- prix_unitaire
+- tva
