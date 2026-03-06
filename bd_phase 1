@@ -1,6 +1,6 @@
 Exemple Base de donnée avec pblm de redondances, de logique..
 
-
+table universelle (première idée) : 
 
 VENTE_U(
 id_commande, date_commande, statut_commande,
@@ -16,7 +16,7 @@ commission_plateforme
 )
 
 
-
+au final on switch sur plusieurs tables (tjrs avec pblm de redondances et de qualité)
 
 Table PRODUITS : id_prod, nom_produit, description, prix_unitaire, stock, nom_vendeur, email_vendeur (Ici, l'email du vendeur est redondant avec le nom).
 Table COMMANDES : id_comm, date_commande, id_client, nom_client, adresse_client, telephone_client, montant_total (Ici, les infos clients sont stockées directement dans la commande : c'est la redondance parfaite pour le projet ).
