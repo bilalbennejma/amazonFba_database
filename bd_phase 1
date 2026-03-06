@@ -1,0 +1,16 @@
+Exemple Base de donnée avec pblm de redondances, de logique..
+
+
+
+VENTE_U(
+id_commande, date_commande, statut_commande,
+id_client, nom_client, email_client, tel_client, adresse_livraison, ville, cp, pays,
+id_vendeur, nom_vendeur, email_vendeur, iban_vendeur, pays_vendeur,
+sku, nom_produit, marque, categorie, prix_unitaire, tva,
+quantite, entrepot, stock_dispo,
+mode_paiement, id_paiement, montant_paye, date_paiement,
+transporteur, num_suivi, date_expedition, date_livraison,
+id_retour, motif_retour, date_retour, remboursement,
+note_avis, commentaire_avis, date_avis,
+commission_plateforme
+)
