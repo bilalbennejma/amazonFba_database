@@ -21,3 +21,54 @@ au final on switch sur plusieurs tables (tjrs avec pblm de redondances et de qua
 Table PRODUITS : id_prod, nom_produit, description, prix_unitaire, stock, nom_vendeur, email_vendeur (Ici, l'email du vendeur est redondant avec le nom).
 Table COMMANDES : id_comm, date_commande, id_client, nom_client, adresse_client, telephone_client, montant_total (Ici, les infos clients sont stockées directement dans la commande : c'est la redondance parfaite pour le projet ).
 Table DETAIL_COMMANDE : id_comm, id_prod, quantite, nom_produit_copie (On recopie le nom du produit, encore une redondance).
+
+
+
+CREATE TABLE COMMANDES_CLIENTS (
+    id_commande INT PRIMARY KEY,
+    date_commande DATE,
+    statut_commande VARCHAR(50),
+    id_client INT,
+    nom_client VARCHAR(100),
+    email_client VARCHAR(100),
+    tel_client VARCHAR(20),
+    adresse_livraison VARCHAR(255),
+    ville VARCHAR(100),
+    cp VARCHAR(10),
+    pays VARCHAR(50),
+    mode_paiement VARCHAR(50),
+    montant_paye DECIMAL(10, 2)
+);
+
+CREATE TABLE PRODUITS_VENDEURS (
+    sku VARCHAR(50) PRIMARY KEY,
+    nom_produit VARCHAR(200),
+    marque VARCHAR(100),
+    categorie VARCHAR(100),
+    prix_unitaire DECIMAL(10, 2),
+    tva DECIMAL(5, 2),
+    id_vendeur INT,
+    nom_vendeur VARCHAR(100),
+    email_vendeur VARCHAR(100),
+    iban_vendeur VARCHAR(34),
+    entrepot VARCHAR(100),
+    stock_dispo INT
+);
+
+CREATE TABLE LOGISTIQUE_ET_SAV (
+    id_logistique INT AUTO_INCREMENT PRIMARY KEY,
+    id_commande INT,
+    sku VARCHAR(50),
+    quantite INT,
+    nom_produit_copie VARCHAR(200),
+    transporteur VARCHAR(100),
+    num_suivi VARCHAR(100),
+    date_expedition DATE,
+    id_retour INT,
+    motif_retour VARCHAR(255),
+    remboursement DECIMAL(10, 2),
+    note_avis INT,
+    commentaire_avis TEXT,
+    FOREIGN KEY (id_commande) REFERENCES COMMANDES_CLIENTS(id_commande),
+    FOREIGN KEY (sku) REFERENCES PRODUITS_VENDEURS(sku)
+);
