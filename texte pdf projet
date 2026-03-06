@@ -1,0 +1,38 @@
+Projet Base de Données : Modélisation d'une Marketplace (Type Amazon FBA)
+Objectif du projet et contexte
+L’objectif de cette base de données est de modéliser une marketplace de type Amazon FBA, mettant en relation des vendeurs professionnels et des clients finaux via une plateforme centralisée. Elle doit permettre de gérer l’ensemble du processus de vente, de la mise en ligne d’un produit jusqu’à sa livraison au client.
+
+La base de données doit notamment permettre de gérer les stocks, d'enregistrer les clients et les vendeurs, de suivre les commandes (ainsi que leurs statuts et paiements), de gérer les retours et d'analyser les ventes. Pour cette première phase du projet universitaire, nous avons délibérément choisi une structure de données simplifiée, regroupant plusieurs concepts dans un nombre réduit de tables. Ce choix "imparfait" nous permet de mettre en évidence des redondances d'informations et des problèmes de qualité de données, qui seront résolus lors de la phase de normalisation ultérieure.
+
+Structure du Modèle Relationnel (MLD)
+Pour répondre aux besoins de la plateforme tout en respectant la contrainte de l'exercice (créer des tables non normalisées), nous avons défini trois tables principales :
+
+COMMANDES_CLIENTS : Centralise les informations de la commande ainsi que les coordonnées complètes de l'acheteur.
+
+PRODUITS_VENDEURS : Gère le catalogue des articles, les stocks, ainsi que les informations de contact et de paiement des vendeurs partenaires.
+
+LOGISTIQUE_ET_SAV : Assure le lien entre les commandes et les produits, tout en stockant les informations de livraison, de suivi et les éventuels retours clients.
+
+Règles de gestion et contraintes d'intégrité
+Pour garantir un minimum de fiabilité du système malgré sa structure simplifiée, plusieurs règles métiers ont été intégrées :
+
+Contraintes sur les valeurs (Montants et Stocks) : Nous imposons que les montants financiers (prix unitaire, montant payé) et les quantités disponibles en stock soient toujours strictement supérieurs ou égaux à zéro.
+
+Contraintes de statuts : Les statuts des commandes sont limités à des valeurs précises (En attente, Payée, Expédiée, Livrée, Annulée) pour éviter toute erreur de saisie ou d'orthographe.
+
+Contraintes temporelles (Logique métier) : Une cohérence chronologique stricte est exigée. La date d'expédition doit obligatoirement être égale ou postérieure à la date de la commande. De même, la livraison ne peut avoir lieu avant l'expédition.
+
+Analyse des problèmes de qualité et des redondances
+Le modèle actuel présente plusieurs défauts de conception majeurs, absolument nécessaires à l'exercice de normalisation qui suivra.
+
+Mise en évidence des redondances :
+On observe une duplication flagrante des données. Dans la table COMMANDES_CLIENTS, les informations du client sont répétées pour chaque commande. Par exemple, si TALBI Ismail effectue trois achats différents, son nom, son téléphone et son adresse à Tours sont écrits trois fois dans la base. De la même manière, dans la table PRODUITS_VENDEURS, les informations du vendeur (nom, email, IBAN) de HACHE Joany sont dupliquées pour chaque nouveau produit qu'il met en vente.
+
+Conséquences et Anomalies :
+Ces répétitions entraînent des failles graves dans la gestion de la base, illustrées par trois anomalies majeures :
+
+Anomalie de mise à jour : Si le vendeur BENNEJMA Bilel change ses coordonnées bancaires ou son email, une mise à jour sur toutes les lignes de ses produits est nécessaire. En cas d'oubli, la base contiendra des informations divergentes et le vendeur pourrait ne pas recevoir ses paiements.
+
+Anomalie d'insertion : Il est structurellement impossible d’ajouter un vendeur dans la base de données sans créer au moins un produit associé, car il n'existe pas de table dédiée uniquement aux vendeurs.
+
+Anomalie de suppression : Si l'on retire la seule et unique commande de MESSAOUDI Hamza (par exemple suite à une annulation), l'intégralité de sa fiche client disparaît de la base. Ses coordonnées n'étant pas isolées, nous perdons définitivement la trace de ce client.
