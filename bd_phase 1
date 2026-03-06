@@ -62,3 +62,9 @@ INSERT INTO LOGISTIQUE_ET_SAV (id_commande, sku, quantite, nom_produit_copie, tr
 (101, 'SKU-001', 1, 'macBook Air M3', 'Chronopost', 'CHR-TALBI-001', '2026-03-02', NULL, NULL, 0.00, 5, ' parfait pour informatique '),
 (102, 'SKU-003', 1, 'ecran 4K Dell', 'Colissimo', 'COL-MESSA-002', NULL, NULL, NULL, 0.00, NULL, NULL),
 (103, 'SKU-002', 1, 'souris gaming', 'Chronopost', 'CHR-TALBI-002', '2026-03-05', NULL, NULL, 0.00, 4, 'bonne qualiter , pas cher et ergonomique.');
+
+
+INSERT INTO PRODUITS_VENDEURS VALUES 
+('SKU-001', 'MacBook Air M3', 'Apple', 'Informatique', 1200.00, 20.0, 50, 'HACHE Joany', 'joany.hache@vendeur.fr', 'FR7630001000000123456789012', 'Entrepôt Tours Nord', 15),
+('SKU-002', 'Souris Magic Mouse', 'Apple', 'Accessoire', 85.00, 20.0, 50, 'HACHE Joany', 'joany.hache@vendeur.fr', 'FR7630001000000123456789012', 'Entrepôt Tours Nord', 100),
+('SKU-003', 'Écran 4K Dell', 'Dell', 'Informatique', 450.00, 20.0, 60, 'BENNEJMA Bilel', 'bilel.bennejma@vendeur.fr', 'FR7698765432109876543210987', 'Entrepôt Orléans', 25);
