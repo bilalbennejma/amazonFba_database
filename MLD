@@ -1,0 +1,5 @@
+COMMANDES_CLIENTS (<u>id_commande</u>, date_commande, statut_commande, id_client, nom_client, email_client, tel_client, adresse_livraison, ville, cp, pays, mode_paiement, montant_paye)
+
+PRODUITS_VENDEURS (<u>sku</u>, nom_produit, marque, categorie, prix_unitaire, tva, id_vendeur, nom_vendeur, email_vendeur, iban_vendeur, entrepot, stock_dispo)
+
+LOGISTIQUE_ET_SAV (<u>id_logistique</u>, #id_commande, #sku, quantite, nom_produit_copie, transporteur, num_suivi, date_expedition, id_retour, motif_retour, remboursement, note_avis, commentaire_avis)
